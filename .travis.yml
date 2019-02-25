@@ -8,5 +8,16 @@ before_install:
 script:
   - docker run devopsdymyr/docker-react npm run test -- --coverage
 
-
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "avengers"
+  env: "Avengers-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-594365515756"
+  bucket_path: "avengers"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
 
